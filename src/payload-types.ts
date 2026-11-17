@@ -781,6 +781,7 @@ export interface Form {
 export interface Game {
   id: string;
   title: string;
+  cloudinaryPublicId?: string | null;
   /**
    * URL-friendly game identifier
    */
@@ -1383,6 +1384,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface GamesSelect<T extends boolean = true> {
   title?: T;
+  cloudinaryPublicId?: T;
   slug?: T;
   coverImage?: T;
   shortDescription?: T;

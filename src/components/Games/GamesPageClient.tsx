@@ -1,8 +1,9 @@
 'use client'
 
-import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useMemo, useState } from 'react'
+import { CldImage } from 'next-cloudinary'
 
 import type { Game, Media } from '@/payload-types'
 
@@ -217,6 +218,10 @@ export default function GamesPageClient({ games }: Props) {
   ].filter(Boolean).length
 
   const getCover = (game: Game) => {
+    if (game.cloudinaryPublicId) {
+      return 'cloudinary'
+    }
+
     if (game.coverImage && typeof game.coverImage === 'object' && (game.coverImage as Media).url) {
       return (game.coverImage as Media).url!
     }
@@ -460,7 +465,16 @@ export default function GamesPageClient({ games }: Props) {
                           view === 'grid' ? 'aspect-[3/4] w-full' : 'h-24 w-20 rounded-lg'
                         }`}
                       >
-                        {cover ? (
+                        {game.cloudinaryPublicId ? (
+                          <CldImage
+                            src={game.cloudinaryPublicId}
+                            alt={game.title}
+                            fill
+                            crop="fill"
+                            sizes="(max-width: 768px) 100vw, 300px"
+                            className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                          />
+                        ) : cover ? (
                           <Image
                             src={cover}
                             alt={game.title}

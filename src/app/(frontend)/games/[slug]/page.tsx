@@ -1,3 +1,4 @@
+import { CldImage } from 'next-cloudinary'
 import { notFound } from 'next/navigation'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
@@ -36,9 +37,17 @@ export default async function GameDetailsPage({ params }: Props) {
     <main className="container min-h-screen py-12 text-white">
       <h1 className="text-4xl font-bold">{game.title}</h1>
 
-      {game.coverImage && typeof game.coverImage === 'object' && (
+      {game.cloudinaryPublicId && (
         <div className="relative mt-8 aspect-[3/4] max-w-xs overflow-hidden rounded-xl">
-          <Image src={game.coverImage.url!} alt={game.title} fill className="object-cover" />
+          <CldImage
+            src={game.cloudinaryPublicId}
+            alt={game.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 320px"
+            crop="fill"
+            gravity="auto"
+            className="object-cover"
+          />
         </div>
       )}
 

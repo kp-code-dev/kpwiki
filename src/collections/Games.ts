@@ -21,6 +21,11 @@ export const Games: CollectionConfig = {
       label: 'Game Title',
     },
     {
+      name: 'cloudinaryPublicId',
+      type: 'text',
+      label: 'Cloudinary Public ID',
+    },
+    {
       name: 'slug',
       type: 'text',
       required: true,
