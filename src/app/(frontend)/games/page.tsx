@@ -4,6 +4,8 @@ import GamesPageClient from '@/components/Games/GamesPageClient'
 
 // export const dynamic = 'force-dynamic'
 
+export const revalidate = 60
+
 export default async function GamesPage() {
   const payload = await getPayload({
     config: configPromise,
