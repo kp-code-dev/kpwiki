@@ -23,8 +23,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
         <Providers>
@@ -45,9 +43,25 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
+
+  title: {
+    default: 'Games | KP Wiki',
+    template: '%s | KP Wiki',
+  },
+
+  description: 'KP Wiki - Explore games, technology and digital entertainment.',
+
   openGraph: mergeOpenGraph(),
+
   twitter: {
     card: 'summary_large_image',
     creator: '@payloadcms',
+  },
+
+  icons: {
+    icon: [
+      { url: '/icon.ico', sizes: '32x32' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
   },
 }
