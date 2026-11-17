@@ -2,7 +2,7 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import GamesPageClient from '@/components/Games/GamesPageClient'
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 export default async function GamesPage() {
   const payload = await getPayload({
