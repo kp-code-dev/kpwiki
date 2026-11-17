@@ -1,7 +1,14 @@
 import type { CollectionConfig } from 'payload'
 
+import { revalidateGame, revalidateDelete } from './Games/hooks/revalidateGame'
+
 export const Games: CollectionConfig = {
   slug: 'games',
+
+  hooks: {
+    afterChange: [revalidateGame],
+    afterDelete: [revalidateDelete],
+  },
 
   admin: {
     useAsTitle: 'title',
