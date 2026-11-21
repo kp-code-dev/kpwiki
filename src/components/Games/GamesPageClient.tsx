@@ -239,7 +239,7 @@ export default function GamesPageClient({ games }: Props) {
             alt="Gaming universe background"
             fill
             priority
-            className="object-contain transition duration-500"
+            className="object-cover transition duration-500"
           />
 
           {/* Black Overlay - 70% */}

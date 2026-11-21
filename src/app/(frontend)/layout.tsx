@@ -1,14 +1,15 @@
-import type { Metadata } from 'next'
-
-import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
-import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
-import { Header } from '@/Header/Component'
+import { cn } from '@/utilities/ui'
+import type { Metadata } from 'next'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+
 import { Providers } from '@/providers'
+import { Header } from '@/Header/Component'
+import { Footer } from '@/Footer/Component'
+import { AdminBar } from '@/components/AdminBar'
+import { Analytics } from '@vercel/analytics/next'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
@@ -36,6 +37,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
           <Footer />
         </Providers>
+
+        <Analytics />
       </body>
     </html>
   )
