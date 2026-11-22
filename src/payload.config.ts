@@ -60,6 +60,9 @@ export default buildConfig({
   editor: defaultLexical,
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
+    connectOptions: {
+      dbName: 'kp-wiki',
+    },
   }),
   collections: [Pages, Posts, Media, Categories, Users, Games],
   cors: [getServerSideURL()].filter(Boolean),
