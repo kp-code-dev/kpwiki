@@ -203,7 +203,7 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (AboutBlock | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -440,6 +440,81 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock".
+ */
+export interface AboutBlock {
+  hero: {
+    title: string;
+    description?: string | null;
+    backgroundImage?: (string | null) | Media;
+    buttonText?: string | null;
+    buttonLink: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
+    };
+  };
+  mission?: {
+    title?: string | null;
+    description?: string | null;
+    features?:
+      | {
+          /**
+           * Lucide icon name, e.g. gamepad-2, shield-check
+           */
+          icon?: string | null;
+          title: string;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Optional. Add only verified statistics.
+   */
+  stats?:
+    | {
+        value?: string | null;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  whyChooseUs?: {
+    title?: string | null;
+    description?: string | null;
+    points?:
+      | {
+          title: string;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    image?: (string | null) | Media;
+  };
+  closing?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'about';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1106,6 +1181,7 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        about?: T | AboutBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
@@ -1125,6 +1201,73 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock_select".
+ */
+export interface AboutBlockSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        backgroundImage?: T;
+        buttonText?: T;
+        buttonLink?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+      };
+  mission?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        features?:
+          | T
+          | {
+              icon?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  whyChooseUs?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        points?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+        image?: T;
+      };
+  closing?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
