@@ -69,6 +69,7 @@ export default buildConfig({
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
+    ...plugins,
     vercelBlobStorage({
       enabled: true,
       collections: {
